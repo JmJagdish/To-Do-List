@@ -1,0 +1,697 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================
+   BODY
+========================= */
+
+body {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(255, 255, 255, 0.55),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #dce5ee 0%,
+      #d4dee8 50%,
+      #cfd9e4 100%
+    );
+
+  font-family: Arial, Helvetica, sans-serif;
+  color: #39434f;
+}
+
+/* =========================================================
+   MAIN CLAY CONTAINER
+========================================================= */
+
+.todo-container {
+  position: relative;
+
+  width: 410px;
+  height: 680px;
+  max-height: 90vh;
+
+  padding: 38px 28px 30px;
+
+  background: #dfe7ef;
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 32px;
+
+  box-shadow:
+    18px 18px 35px rgba(151, 164, 179, 0.48),
+    -18px -18px 35px rgba(255, 255, 255, 0.72),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.35),
+    inset -2px -2px 5px rgba(151, 164, 179, 0.16);
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+/* =========================
+   SUBTLE INNER CLAY GLOW
+========================= */
+
+.todo-container::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 90px;
+
+  border-radius: 32px 32px 0 0;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0)
+  );
+
+  pointer-events: none;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.todo-header {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+  margin-bottom: 30px;
+
+  flex-shrink: 0;
+}
+
+/* Calendar Clay Button */
+
+.todo-header i {
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 17px;
+
+  background: #dfe7ef;
+  color: #ff671b;
+
+  font-size: 21px;
+
+  box-shadow:
+    8px 8px 16px rgba(151, 164, 179, 0.38),
+    -7px -7px 15px rgba(255, 255, 255, 0.68),
+    inset 1px 1px 3px rgba(255, 255, 255, 0.3);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.todo-header i:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    10px 10px 19px rgba(151, 164, 179, 0.42),
+    -8px -8px 17px rgba(255, 255, 255, 0.72);
+}
+
+.todo-header h1 {
+  font-size: 27px;
+  font-weight: 700;
+
+  color: #303a46;
+
+  letter-spacing: -0.7px;
+}
+
+/* =========================================================
+   ADD TASK AREA
+========================================================= */
+
+.add-task {
+  position: relative;
+  z-index: 2;
+
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 6px;
+
+  margin-bottom: 30px;
+
+  background: #dfe7ef;
+
+  border-radius: 32px;
+
+  box-shadow:
+    inset 5px 5px 10px rgba(151, 164, 179, 0.28),
+    inset -5px -5px 10px rgba(255, 255, 255, 0.62),
+    5px 5px 12px rgba(151, 164, 179, 0.18),
+    -5px -5px 12px rgba(255, 255, 255, 0.25);
+
+  flex-shrink: 0;
+}
+
+.add-task input {
+  flex: 1;
+
+  min-width: 0;
+  height: 100%;
+
+  padding: 0 18px;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #3d4651;
+
+  font-size: 14px;
+}
+
+.add-task input::placeholder {
+  color: #8b96a2;
+}
+
+/* =========================
+   ADD BUTTON
+========================= */
+
+.add-task button {
+  height: 47px;
+
+  padding: 0 20px;
+
+  border: none;
+  border-radius: 25px;
+
+  background: linear-gradient(
+    145deg,
+    #ff7c32,
+    #f45a0b
+  );
+
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+
+  cursor: pointer;
+
+  box-shadow:
+    6px 7px 12px rgba(185, 88, 34, 0.28),
+    -4px -4px 8px rgba(255, 255, 255, 0.32),
+    inset 1px 1px 2px rgba(255, 190, 145, 0.35);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.add-task button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    8px 9px 15px rgba(185, 88, 34, 0.32),
+    -4px -4px 8px rgba(255, 255, 255, 0.38),
+    inset 1px 1px 2px rgba(255, 190, 145, 0.4);
+}
+
+.add-task button:active {
+  transform: translateY(1px) scale(0.97);
+
+  box-shadow:
+    inset 4px 4px 7px rgba(155, 60, 10, 0.3),
+    inset -3px -3px 6px rgba(255, 160, 110, 0.25);
+}
+
+.add-task button span {
+  margin-left: 3px;
+  font-size: 18px;
+}
+
+/* =========================================================
+   TASK LIST
+========================================================= */
+
+#taskList {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+
+  flex: 1;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+  border-radius: 21px;
+
+  gap: 15px;
+
+  overflow-y: auto;
+
+  padding: 8px 8px 48px 0;
+
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#taskList::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================================================
+   TASK CARD - CLAYMORPHISM
+========================================================= */
+
+.task {
+  width: 100%;
+  min-height: 62px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 12px 10px 15px;
+
+  background: #dfe7ef;
+
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 21px;
+
+  box-shadow:
+    9px 10px 18px rgba(151, 164, 179, 0.36),
+    -8px -8px 17px rgba(255, 255, 255, 0.58),
+    inset 1px 1px 3px rgba(255, 255, 255, 0.25),
+    inset -1px -1px 3px rgba(151, 164, 179, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* =========================
+   TASK HOVER
+========================= */
+
+.task:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    11px 12px 21px rgba(151, 164, 179, 0.4),
+    -9px -9px 19px rgba(255, 255, 255, 0.64),
+    inset 1px 1px 3px rgba(255, 255, 255, 0.3);
+}
+
+/* =========================================================
+   LEFT SIDE
+========================================================= */
+
+.task-left {
+  min-width: 0;
+
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+}
+
+/* =========================================================
+   CHECKBOX
+========================================================= */
+
+.task-left input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+
+  position: relative;
+
+  flex-shrink: 0;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+
+  border: 3px solid #aeb9c5;
+
+  background: #dfe7ef;
+
+  cursor: pointer;
+
+  box-shadow:
+    inset 2px 2px 5px rgba(151, 164, 179, 0.28),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.58),
+    3px 4px 7px rgba(151, 164, 179, 0.26),
+    -3px -3px 6px rgba(255, 255, 255, 0.42);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Checkbox hover */
+
+.task-left input[type="checkbox"]:hover {
+  border-color: #ff6b1a;
+
+  transform: scale(1.07);
+}
+
+/* =========================
+   CHECKED CHECKBOX
+========================= */
+
+.task-left input[type="checkbox"]:checked {
+  background: linear-gradient(
+    145deg,
+    #ff7b32,
+    #f45a0b
+  );
+
+  border-color: #f45a0b;
+
+  box-shadow:
+    inset 3px 3px 6px rgba(170, 65, 10, 0.28),
+    4px 5px 8px rgba(151, 164, 179, 0.3),
+    -2px -2px 5px rgba(255, 255, 255, 0.28);
+}
+
+/* =========================
+   CHECK ICON
+========================= */
+
+.task-left input[type="checkbox"]:checked::after {
+  content: "✓";
+
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -52%);
+
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   TASK TEXT
+========================================================= */
+
+.task-left p {
+  min-width: 0;
+
+  color: #3f4955;
+
+  font-size: 14px;
+  line-height: 20px;
+
+  word-break: break-word;
+
+  transition:
+    color 0.2s ease,
+    text-decoration 0.2s ease;
+}
+
+/* Completed */
+
+.task-left input[type="checkbox"]:checked + p {
+  color: #929ca7;
+
+  text-decoration: line-through;
+}
+
+/* =========================================================
+   DELETE BUTTON
+========================================================= */
+
+.delete-btn {
+  flex-shrink: 0;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 13px;
+
+  background: #dfe7ef;
+
+  color: #8e99a5;
+
+  cursor: pointer;
+
+  box-shadow:
+    5px 6px 11px rgba(151, 164, 179, 0.3),
+    -5px -5px 10px rgba(255, 255, 255, 0.58),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.25);
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.delete-btn i {
+  font-size: 14px;
+}
+
+/* =========================
+   DELETE HOVER
+========================= */
+
+.delete-btn:hover {
+  color: #e55353;
+
+  transform: scale(1.08);
+
+  box-shadow:
+    4px 5px 9px rgba(151, 164, 179, 0.28),
+    -4px -4px 9px rgba(255, 255, 255, 0.52);
+}
+
+/* =========================
+   DELETE ACTIVE
+========================= */
+
+.delete-btn:active {
+  transform: scale(0.95);
+
+  box-shadow:
+    inset 3px 3px 6px rgba(151, 164, 179, 0.3),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.55);
+}
+
+/* =========================================================
+   BOTTOM FADE
+========================================================= */
+
+.todo-container::after {
+  content: "";
+
+  position: absolute;
+
+  left: 28px;
+  right: 28px;
+  bottom: 0;
+
+  height: 75px;
+
+  pointer-events: none;
+
+  z-index: 5;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(223, 231, 239, 0),
+    rgba(223, 231, 239, 0.78) 52%,
+    rgba(223, 231, 239, 1) 100%
+  );
+
+  border-radius: 0 0 32px 32px;
+}
+
+/* =========================================================
+   SCROLL HINT
+========================================================= */
+
+.scroll-hint {
+  position: absolute;
+
+  bottom: 15px;
+  left: 50%;
+
+  width: 34px;
+  height: 34px;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  transform: translateX(-50%);
+
+  background: #dfe7ef;
+
+  color: #8995a1;
+
+  border-radius: 50%;
+
+  box-shadow:
+    5px 6px 11px rgba(151, 164, 179, 0.3),
+    -5px -5px 10px rgba(255, 255, 255, 0.58);
+
+  pointer-events: none;
+
+  z-index: 10;
+
+  animation: scrollDown 1.5s ease-in-out infinite;
+}
+
+.scroll-hint i {
+  font-size: 11px;
+}
+
+@keyframes scrollDown {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 0.55;
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(4px);
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  body {
+    padding: 20px;
+  }
+
+  .todo-container {
+    width: 100%;
+    height: 90vh;
+    max-height: 90vh;
+    min-height: 500px;
+
+    padding: 30px 20px;
+  }
+
+  .todo-header h1 {
+    font-size: 23px;
+  }
+
+  .add-task button {
+    padding: 0 16px;
+  }
+
+  #taskList {
+    padding-right: 6px;
+    padding-bottom: 48px;
+  }
+
+  .todo-container::after {
+    left: 20px;
+    right: 20px;
+
+    border-radius: 0 0 32px 32px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (max-width: 360px) {
+  .todo-container {
+    padding: 25px 16px;
+  }
+
+  .todo-header {
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .todo-header i {
+    width: 44px;
+    height: 44px;
+  }
+
+  .todo-header h1 {
+    font-size: 21px;
+  }
+
+  .add-task {
+    height: 54px;
+  }
+
+  .add-task button {
+    height: 42px;
+    padding: 0 13px;
+  }
+
+  .task {
+    min-height: 58px;
+    padding-left: 12px;
+  }
+
+  .task-left {
+    gap: 10px;
+  }
+
+  .delete-btn {
+    width: 35px;
+    height: 35px;
+  }
+}
